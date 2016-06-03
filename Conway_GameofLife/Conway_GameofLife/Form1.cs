@@ -19,7 +19,7 @@ namespace Conway_GameofLife
         public Form1()
         {
             InitializeComponent();
-            timer.Interval = 20;
+            timer.Interval = 100;
             timer.Tick += Timer_Tick;
 
         }
@@ -227,15 +227,7 @@ namespace Conway_GameofLife
             return count;
         }
 
-
-
-
-
-
-
-
-
-
+        
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {

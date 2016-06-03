@@ -237,56 +237,6 @@
         E9ew//AVxE8OItv/9O/Cf0ck8gud2vKswuxNZgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="PlaytoolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJOSURBVHhe7drtbdNQGAXgbMAIjMAIjMAIjMAIjMAIjMAI
-        jMAIjMAIcF8pV0TWdWu7se/X80hH/dEkrZRjOz7tDQAAAAAAAAAAAAAAAAAAAAD2eHf/yqQ+pvy+f2VC
-        8cb/vedHyvsUJvJYgJyvKS4NkygVIBKXhU8pDG6tADk/Uz6kMKjXCpDzLcVlYUBbCxD5k/I5hYHsKUDO
-        r5R4HgM4UoCc7ykuC51bK0Cc6uOUX/reY+IxcdtIp9YKEOLojje39P1lrImdeqkAWayDcTtYetwy1sTO
-        bClAFsNQHOmlxy9jTezEngJk8eZu+XxgTezAkQKEOM3H6b703GWsiQ07WoAsnh+7QOk1lrEmNuitBci+
-        pGy9bbQmNuRZBQhxdMc4VHq9ZayJjXhmAbK43m+9bbQmVnZGATJrYgfOLECwJjbu7AJk1sRGXVWAzJrY
-        mKsLkFkTG1GrAMGa2ICaBcjid7AmVtJCATJrYgUtFSBYEy/WWgEya+JFWi1AZk08mQJMziVgcq0VwIfA
-        i7VUALeBFbRQgPgdDEGV1CyAKbgBtQrgj0GNuLoA/hzcmKsK4B9CGnV2AeIIjiO59DOW8S9hFZxZACte
-        B84ogBWvI88sgBWvQ88qgBWvU28tQDzfitexowWw4g3iSAGseAPZUwAr3oC2FMCKN7CXCmDFm8BaAax4
-        k1grwJZY8QZwpABWvIHsKYAVb0BbC2DFG9RrBbDiDW6tAFa8SZQKYMWbyGMBrHgTigJY8SbmVA8AAAAA
-        AAAAAAAAAAAAAAAA/91u/wCSxS2oRv0HlQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="PausetoolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJRSURBVHhe7d2xbRxREERBZqQQFDpDUEjSnT8zaDXP2ypg
-        LeKhicE3ZIlfAAAAAAAAAAAAAAAAAAAAAAAAAP/t1+v7/tCXmtrme//u/NDv1/f3Q19qapvv/bvzQx7A
-        w3kAD+cBPNz2AP68vukfXu/v/bOpSU1ts+cBfMD2AK7jbk1qapu9qyHUHHdrUlPb7F0Noea4W5Oa2mbv
-        agg1x92a1NQ2e1dDqDnu1qSmttm7GkLNcbcmNbXN3tUQao67NampbfauhlBz3K1JTW2zdzWEmuNuTWpq
-        m72rIdQcd2tSU9vsXQ2h5rhbk5raZu9qCDXH3ZrU1DZ7V0OoOe7WpKa22bsaQs1xtyY1tc3e1RBqjrs1
-        qalt9q6GUHPcrUlNbbN3NYSa425Namqbvash1Bx3a1JT2+xdDaHmuFuTmtpm72oINcfdmtTUNntXQ6g5
-        7takprbZuxpCzXG3JjW1zd7VEGqOuzWpqW32roZQc9ytSU1ts3c1hJrjbk1qapu9qyHUHHdrUlPb7F0N
-        oea4W5Oa2mbvagg1x92a1NQ2e1dDqDnu1qSmttm7GkLNcbcmNbXN3tUQao67NampbfauhlBz3K1JTW2z
-        dzWEmuNuTWpqm72rIdQcd2tSU9vsXQ2h5rhbk5raZu9qCDXH3ZrU1DZ7V0OoOe7WpKa22bsaQs1xtyY1
-        tc3e1RBqjrs1qalt9q6GUHPcrUlNbbN3NYS24/qPIh9iewDNl5ra5vMAPsADeDgP4OE8gIfzJ2MAAAAA
-        AAAAAAAAAAAAAAAAAACAx/j6+gddRfKlOlc9DwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="SteptoolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK6SURBVHhe7dyBjdMwFAbgbsAIjMAIjMAIjMAIjMAIjMAI
-        jMAIjMAI4CcR6WQ5qeM4dpt+n/SEjqty1fMfvzbp3Q0AAAAAAAAAAAAAAAAAAAAAAACg2rv///Kifqb6
-        mkoQXlQE4G+q36k+xX9M8D7Vxw71IRU7LQFYKr6OBRkpdqC3z6G14rmzUx6ApUaOBQGYaC0AUaPGggBM
-        tBWApX6kOnMsCMBENQGI+pMqFuoMAjBRbQCWirEQr7h7WgtA/ir/bf1KlT9eABrsDcBSPcfCWgC2lJ63
-        ADQoNTLO8tIZlleMhS+pjhKAibYaGQsTi5x/P68IS2zLrQRgonuNjG0+tvv8MaX6nqrl2oEATFTbyDjD
-        YzTkj82rZSwIwER7G3nGWBCAiVoauWcsfEt1bywIwERHGhmXiWvHwudUawRgoqONjLN7bQHziuOWbtkK
-        wES9GhljoXSsUuVjQQAm6t3IPWNhudMoABOd0cg4u+Msz49bqvhZcf2g9L0tAtDJmY2MeV86fm1tEYBO
-        RjQy3gHUXDvIa4sAdDKqkXvGwlJbBKCT0Y2MsVBzpzFqiwB0MquRcb/g3ljYIgCdCMCLG91II+DBjGqk
-        F4EPakQjvQ18YGc20oWgJ3BGI10KfiK9G+lm0JPp1Ui3g5/U0UbGQq4tYF5xXB8IeTBHGukjYRfQ0kgf
-        Cr2QvY2Mxap5T+9j4U+itpF+MeSi7jXSr4Zd3FYjz9juSwRgolIjY6uvuWPXst2XCMBEpUbWlD8QcRF7
-        AxC7w5HtvmQtAPFz1qq0QwlAg9oAxHYfC3WGtQDsLQFoUBOAntt9iQBMtBWA2O6XO3ZnEoCJ1gIQi9Ly
-        nr6FAEyUByC+PnO7LxGAiZYAjNruSyJwpVf6e6t0q5k7IgAjt3sejIUHAAAAAAAAAAAAAAAAAAAAAAAA
-        Xs7t9g/xgazDyqSr/gAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
   </metadata>

@@ -190,7 +190,7 @@
             // PlaytoolStripButton
             // 
             this.PlaytoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PlaytoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlaytoolStripButton.Image")));
+            this.PlaytoolStripButton.Image = global::Conway_GameofLife.Properties.Resources.Media_Controls_Play_icon;
             this.PlaytoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlaytoolStripButton.Name = "PlaytoolStripButton";
             this.PlaytoolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -200,7 +200,7 @@
             // PausetoolStripButton
             // 
             this.PausetoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PausetoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PausetoolStripButton.Image")));
+            this.PausetoolStripButton.Image = global::Conway_GameofLife.Properties.Resources.Media_Controls_Pause_icon;
             this.PausetoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PausetoolStripButton.Name = "PausetoolStripButton";
             this.PausetoolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -210,7 +210,7 @@
             // SteptoolStripButton
             // 
             this.SteptoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SteptoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SteptoolStripButton.Image")));
+            this.SteptoolStripButton.Image = global::Conway_GameofLife.Properties.Resources.Media_Controls_End_icon;
             this.SteptoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SteptoolStripButton.Name = "SteptoolStripButton";
             this.SteptoolStripButton.Size = new System.Drawing.Size(23, 22);
