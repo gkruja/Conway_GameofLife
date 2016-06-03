@@ -12,10 +12,12 @@ namespace Conway_GameofLife
 {
     public partial class Form1 : Form
     {
+        Size universe_size = new Size(50, 25);
+        int generation = 0, living = 0;
         bool[,] universe = new bool[50, 25];
         bool[,] UniverseNext = new bool[50, 25];
         Timer timer = new Timer();
-        int generation = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,23 +28,31 @@ namespace Conway_GameofLife
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-
             // Call next generation
+            living = 0;
             generation++;
             NextGeneration();
+            bool[,] temp = universe;
+            universe = UniverseNext;
+            UniverseNext = temp;
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    universe[x, y] = UniverseNext[x, y];
+                    if (universe[x,y] == true)
+                    {
+                        living ++;   
+                    }
                 }
             }
 
             // update toolstrip
-            toolStripStatusLabel1.Text = "Generation: " + generation.ToString();
+            toolStripStatusLabel1.Text = "Generation: " + generation.ToString()+"Living cells: "+living.ToString();
 
             // Paint
             graphicsPanel1.Invalidate();
+
+            
         }
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
@@ -93,11 +103,20 @@ namespace Conway_GameofLife
 
 
                         e.Graphics.DrawString(GetNaighbors(x,y).ToString(), font, Brushes.Red, temp, stringFormat);
-
-
                     }
+                    
+
                 }
             }
+            if (true)
+            {
+                Font font = new Font("Arial", 16f);
+                
+                string hud = "Generation: " + generation + "\nCell Count: " + living + "\nBoundry Type: N/A" + "\nUniverse Size: " + universe_size;
+                e.Graphics.DrawString(hud,font , Brushes.Red, new PointF(0, graphicsPanel1.ClientSize.Height - 100));
+            }
+            toolStripStatusLabel1.Text = "Generation: " + generation.ToString() + "Living cells: " + living.ToString();
+
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -108,7 +127,10 @@ namespace Conway_GameofLife
             int x = (int)(e.X /width);
             int y = (int)(e.Y /height);
 
-
+            if (universe[x, y] == false)
+                living++;
+            else
+                living--;
             universe[x, y] = !universe[x, y];
                 graphicsPanel1.Invalidate();
         }
@@ -241,11 +263,15 @@ namespace Conway_GameofLife
         private void PlaytoolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
+            PlaytoolStripButton.Enabled = false;
+            PausetoolStripButton.Enabled = true;
         }
 
         private void PausetoolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
+            PlaytoolStripButton.Enabled = true;
+            PausetoolStripButton.Enabled = false;
         }
 
         private void SteptoolStripButton_Click(object sender, EventArgs e)

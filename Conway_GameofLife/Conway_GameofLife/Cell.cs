@@ -8,8 +8,12 @@ namespace Conway_GameofLife
 {
     class Cell
     {
-        bool IsAlive { get; set; }
-        int GenerationsAlive { get; set; }
-        bool NextGeneration { get; set; }
+        public Cell ()
+        {
+            IsAlive = false;
+            GenerationsAlive = 0;
+        }
+        public bool IsAlive { get; set; }
+        public int GenerationsAlive { get; set; }
     }
 }
