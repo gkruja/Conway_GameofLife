@@ -12,7 +12,8 @@ namespace Conway_GameofLife
 {
     public partial class Form1 : Form
     {
-        bool[,] universe = new bool[50, 50];
+        bool[,] universe = new bool[50, 25];
+        bool[,] UniverseNext = new bool[50, 25];
         Timer timer = new Timer();
         int generation = 0;
         public Form1()
@@ -20,6 +21,7 @@ namespace Conway_GameofLife
             InitializeComponent();
             timer.Interval = 20;
             timer.Tick += Timer_Tick;
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -28,6 +30,13 @@ namespace Conway_GameofLife
             // Call next generation
             generation++;
             NextGeneration();
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = UniverseNext[x, y];
+                }
+            }
 
             // update toolstrip
             toolStripStatusLabel1.Text = "Generation: " + generation.ToString();
@@ -42,9 +51,9 @@ namespace Conway_GameofLife
             float height = (float)graphicsPanel1.ClientSize.Height / (float)universe.GetLength(1);
 
 
-            for (int y = 0; y < universe.GetLength(0); y++)
+            for (int y = 0; y < universe.GetLength(1); y++)
             {
-                for (int x = 0; x < universe.GetLength(1); x++)
+                for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     
                     RectangleF temp = RectangleF.Empty;
@@ -55,11 +64,38 @@ namespace Conway_GameofLife
 
                     if (universe[x,y] == true)
                     {
-                        e.Graphics.FillRectangle(Brushes.Gray, temp);
+                        if (GetNaighbors(x, y) == 2 || GetNaighbors(x, y) == 3)
+                        {
+                            e.Graphics.FillRectangle(Brushes.Green, temp);
+                        }
+                        else
+                        {
+                            e.Graphics.FillRectangle(Brushes.Gray, temp);
+                        }
+                       
                     }
-                    e.Graphics.DrawRectangle(Pens.Black,temp.X,temp.Y,temp.Width,temp.Height);
+                    else if (universe[x, y] == false && GetNaighbors(x, y) == 3)
+                    {
+                        e.Graphics.FillRectangle(Brushes.LightYellow, temp);
+                    }
                     
-                    e.Graphics.DrawString(GetNaighbors(x, y).ToString(), DefaultFont, Brushes.Red, new PointF(temp.X+(width/2.5f) , temp.Y+(height / 2.5f)));
+
+
+                    e.Graphics.DrawRectangle(Pens.Black,temp.X,temp.Y,temp.Width,temp.Height);
+                    if (GetNaighbors(x,y)>0)
+                    {
+                        float size = Math.Min(width, height);
+                        Font font = new Font("Arial", 0.5f*size);
+
+                        StringFormat stringFormat = new StringFormat();
+                        stringFormat.Alignment = StringAlignment.Center;
+                        stringFormat.LineAlignment = StringAlignment.Center;
+
+
+                        e.Graphics.DrawString(GetNaighbors(x,y).ToString(), font, Brushes.Red, temp, stringFormat);
+
+
+                    }
                 }
             }
         }
@@ -81,39 +117,69 @@ namespace Conway_GameofLife
 
         private void NextGeneration()
         {
-            for (int y = 0; y < universe.GetLength(0); y++)
-            {
-                for (int x = 0; x < universe.GetLength(1); x++)
-                {
-                    
+            Array.Clear(UniverseNext, 0, UniverseNext.Length);
 
-                    if (universe[x,y] ==true)
+            //for (int y  = 0; y < universe.GetLength(1); y++)
+            //{
+            //    for (int x = 0; x < universe.GetLength(0); x++)
+            //    {
+                    //bool test = false;
+                    //if (universe[x, y] == true && GetNaighbors(x,y) <2 )
+                    //{
+                    //    test = false;
+                    //}
+
+                    //if (universe[x, y] == true && (GetNaighbors(x, y) == 2 || GetNaighbors(x, y) == 3))
+                    //{
+                    //    test = true;
+                    //}
+
+                    //if (universe[x, y] == true && GetNaighbors(x,y) >3)
+                    //{
+                    //    test = false;
+                    //}
+                    //if (universe[x, y] == false && GetNaighbors(x, y) == 3)
+                    //{
+                    //    test = true;
+                    //}
+                    //UniverseNext[x, y] = test;
+
+                    for ( int y = 0; y < universe.GetLength(1); y++)
                     {
-                        if (GetNaighbors(x,y) == 2 || GetNaighbors(x,y) == 3)
+                        for ( int x = 0; x < universe.GetLength(0); x++)
                         {
-                            universe[x, y] = true;
+
+
+
+                    if (universe[x, y] == true)
+                    {
+                        if (GetNaighbors(x, y) == 2 || GetNaighbors(x, y) == 3)
+                        {
+                            UniverseNext[x, y] = true;
                         }
                         else
                         {
-                            universe[x, y] = false;
+                            UniverseNext[x, y] = false;
                         }
+
                     }
-                    else if (universe[x, y] == false && GetNaighbors(x,y) == 3)
+                    else if (universe[x, y] == false && GetNaighbors(x, y) == 3)
                     {
-                        universe[x, y] = true;
+                        UniverseNext[x, y] = true;
                     }
                     else
-                    {
-                        universe[x, y] = false;
+                        UniverseNext[x, y] = false;
+
                     }
-                }
             }
+
         }
 
 
 
         private int GetNaighbors(int x, int y)
         {
+            
             int count = 0;
 
             if (x > 0)
@@ -131,40 +197,52 @@ namespace Conway_GameofLife
                 if (universe[x - 1, y - 1] == true)
                     count++;
             }
-            if (x < universe.GetLength(1) - 1)
+            if (x < universe.GetLength(0)-1)
             {
                 if (universe[x + 1, y] == true)
                     count++;
             }
-            if (y < universe.GetLength(0) - 1)
+            if (y < universe.GetLength(1) - 1)
             {
                 if (universe[x, y + 1] == true)
                     count++;
             }
-            if (y < universe.GetLength(0) - 1 && x < universe.GetLength(1) - 1)
+            if (y < universe.GetLength(1)-1 && x < universe.GetLength(0)-1 )
             {
                 if (universe[x + 1, y + 1] == true)
                     count++;
             }
-            if (x>0 && y < universe.GetLength(0) - 1)
+            if (x>0 && y < universe.GetLength(1)-1)
             {
                 if (universe[x - 1, y + 1] == true)
                     count++;
             }
-            if (y > 0 && x < universe.GetLength(1) - 1)
+            if (y > 0 && x < universe.GetLength(0)-1)
             {
                 if (universe[x + 1, y - 1] == true)
                     count++;
             }
+
 
             return count;
         }
 
 
 
+
+
+
+
+
+
+
+
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             Array.Clear(universe, 0, universe.Length);
+            generation = 0;
+            timer.Enabled = false;
+            toolStripStatusLabel1.Text = "Generation: " + generation.ToString();
             graphicsPanel1.Invalidate();
         }
 
