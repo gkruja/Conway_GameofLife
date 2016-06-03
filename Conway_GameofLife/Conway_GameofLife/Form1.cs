@@ -21,7 +21,7 @@ namespace Conway_GameofLife
         public Form1()
         {
             InitializeComponent();
-            timer.Interval = 100;
+            timer.Interval = 20;
             timer.Tick += Timer_Tick;
 
         }
@@ -47,7 +47,7 @@ namespace Conway_GameofLife
             }
 
             // update toolstrip
-            toolStripStatusLabel1.Text = "Generation: " + generation.ToString()+"Living cells: "+living.ToString();
+            toolStripStatusLabel1.Text = "Generation: " + generation.ToString()+"  Living cells: "+living.ToString();
 
             // Paint
             graphicsPanel1.Invalidate();
@@ -59,6 +59,22 @@ namespace Conway_GameofLife
         {
             float width = (float)graphicsPanel1.ClientSize.Width / (float)universe.GetLength(0);
             float height = (float)graphicsPanel1.ClientSize.Height / (float)universe.GetLength(1);
+            float width10 = (float)graphicsPanel1.ClientSize.Width / (float)(universe_size.Width/10);
+            float height10 = (float)graphicsPanel1.ClientSize.Height / (universe_size.Height / 10);
+
+            for (int i = 0; i < height10 / height; i++)
+            {
+                Pen mypen = new Pen(Brushes.Black, 2f);
+
+                e.Graphics.DrawLine(mypen, 0, height * i * 10, (float)graphicsPanel1.ClientSize.Width, height * i * 10);
+
+            }
+            for (int j = 0; j < width10 / width; j++)
+            {
+                Pen mypen = new Pen(Brushes.Black, 2f);
+
+                e.Graphics.DrawLine(mypen, width * j * 10, 0, width * j * 10, (float)graphicsPanel1.ClientSize.Height);
+            }
 
 
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -108,6 +124,7 @@ namespace Conway_GameofLife
 
                 }
             }
+            
             if (true)
             {
                 Font font = new Font("Arial", 16f);
@@ -115,7 +132,7 @@ namespace Conway_GameofLife
                 string hud = "Generation: " + generation + "\nCell Count: " + living + "\nBoundry Type: N/A" + "\nUniverse Size: " + universe_size;
                 e.Graphics.DrawString(hud,font , Brushes.Red, new PointF(0, graphicsPanel1.ClientSize.Height - 100));
             }
-            toolStripStatusLabel1.Text = "Generation: " + generation.ToString() + "Living cells: " + living.ToString();
+            toolStripStatusLabel1.Text = "Generation: " + generation.ToString() + "  Living cells: " + living.ToString();
 
         }
 
