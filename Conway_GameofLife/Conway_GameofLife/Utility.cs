@@ -30,7 +30,6 @@ namespace Conway_GameofLife
                 for (int i = 0; i < height10 / height; i++)
                 {
                     Pen mypen = new Pen(Settings.Default.Gridlinesx10, 2f);
-
                     e.DrawLine(mypen, 0, height * i * 10, (float)graphicsPanel1.ClientSize.Width, height * i * 10);
 
                 }
@@ -81,7 +80,7 @@ namespace Conway_GameofLife
                         e.FillRectangle(new Pen(Settings.Default.LivingNextColor).Brush, temp);
                     }
 
-                    e.DrawRectangle(Pens.Black, temp.X, temp.Y, temp.Width, temp.Height);
+                    e.DrawRectangle(new Pen(Settings.Default.Gridlines), temp.X, temp.Y, temp.Width, temp.Height);
                     if (GetNaighbors(x,y,universe) > 0 && Settings.Default.ViewNeightbors ==true)
                     {
                         float size = Math.Min(width, height);
