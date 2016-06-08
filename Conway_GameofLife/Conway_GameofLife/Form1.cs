@@ -23,8 +23,11 @@ namespace Conway_GameofLife
         public Form1()
         {
             InitializeComponent();
-            Settings.Default.ViewNeightbors = false;
-            timer.Interval = Settings.Default.TimeInterval;
+            Utility.SetUtility();
+
+
+
+            timer.Interval = Utility.TimeInterval;
             timer.Tick += Timer_Tick;
         }
         private void Timer_Tick(object sender, EventArgs e)
@@ -58,28 +61,23 @@ namespace Conway_GameofLife
         }
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
-
-
-
-            if (Settings.Default.ViewGrid ==true)
+            if (Utility.ViewGrid ==true)
             {
                 Utility.DrawGrid_10(e.Graphics, graphicsPanel1);
                 Utility.DrawGrid(universe, e.Graphics, graphicsPanel1);
             }
-            if (Settings.Default.ViewHud ==true)
+            if (Utility.ViewHud ==true)
             {
                 Utility.HUD(e.Graphics, graphicsPanel1, generation, living);
-
             }
-
             toolStripStatusLabel1.Text = "Generation: " + generation.ToString() + "  Living cells: " + living.ToString();
 
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
-            float width = (float)graphicsPanel1.ClientSize.Width / (float)Settings.Default.Width;
-            float height = (float)graphicsPanel1.ClientSize.Height / (float)Settings.Default.Height;
+            float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
+            float height = (float)graphicsPanel1.ClientSize.Height / (float)Utility.Height;
 
             int x = (int)(e.X /width);
             int y = (int)(e.Y /height);
@@ -119,16 +117,16 @@ namespace Conway_GameofLife
             if (DialogResult.OK == temp.ShowDialog())
             {
                 Array.Clear(universe, 0, universe.Length);
-                universe = ResizeArray(universe, Settings.Default.Width, Settings.Default.Height);
-                UniverseNext = ResizeArray(UniverseNext, Settings.Default.Width, Settings.Default.Height);
-                timer.Interval = Settings.Default.TimeInterval;
+                universe = ResizeArray(universe, Utility.Width, Utility.Height);
+                UniverseNext = ResizeArray(UniverseNext, Utility.Width, Utility.Height);
+                timer.Interval = Utility.TimeInterval;
                 graphicsPanel1.Invalidate();
             }
 
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            Utility.SetSettings();
             Settings.Default.Save();
         }
         private void SteptoolStripButton_Click(object sender, EventArgs e)
@@ -138,55 +136,55 @@ namespace Conway_GameofLife
 
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
-            
-            //OpenFileDialog open = new OpenFileDialog();
-            
-            //if (DialogResult.OK == open.ShowDialog())
-            //{
-            //    try
-            //    {
-            //        if (open.OpenFile() != null)
-            //        {
-            //            StreamReader read = new StreamReader(open.FileName);
-            //            string Fileread = read.ReadToEnd();
-            //            string[] split = { "\r\n" };
 
-            //            Settings.Default.Width = 50;
-            //            Settings.Default.Height = 50;
-            //            Array.Clear(universe, 0, universe.Length);
-            //            universe = ResizeArray(universe, 50, 50);
-            //            UniverseNext = ResizeArray(UniverseNext, 50,50);
+            OpenFileDialog open = new OpenFileDialog();
 
-            //            string [] ReadSplit = Fileread.Split(split,StringSplitOptions.RemoveEmptyEntries);
-            //            for (int i = 0; i < ReadSplit.Length ; ++i)
-            //            {
-            //                if (ReadSplit[i].Contains("!"))
-            //                {
-                                
-            //                }
-            //                else
-            //                {
-            //                    for (int j = 0; j < ReadSplit[i].Length;j++)
-            //                    {
-            //                         if (ReadSplit[i][j] == 'O')
-            //                            universe[j,i] = true;                                    
-            //                    }
-            //                }
-            //            }
-            //            read.Close();
+            if (DialogResult.OK == open.ShowDialog())
+            {
+                try
+                {
+                    if (open.OpenFile() != null)
+                    {
+                        StreamReader read = new StreamReader(open.FileName);
+                        string Fileread = read.ReadToEnd();
+                        string[] split = { "\r\n" };
 
-            //        }
+                        Utility.Width = 50;
+                        Utility.Height = 50;
+                        Array.Clear(universe, 0, universe.Length);
+                        universe = ResizeArray(universe, 50, 50);
+                        UniverseNext = ResizeArray(UniverseNext, 50, 50);
 
-            //    }
-            //    catch (IOException)
-            //    {
+                        string[] ReadSplit = Fileread.Split(split, StringSplitOptions.RemoveEmptyEntries);
+                        for (int i = 0; i < ReadSplit.Length; ++i)
+                        {
+                            if (ReadSplit[i].Contains("!"))
+                            {
 
-            //        MessageBox.Show("(File Not Found!");
-            //    }
-                
-            //    graphicsPanel1.Invalidate();
+                            }
+                            else
+                            {
+                                for (int j = 0; j < ReadSplit[i].Length; j++)
+                                {
+                                    if (ReadSplit[i][j] == 'O')
+                                        universe[j, i] = true;
+                                }
+                            }
+                        }
+                        read.Close();
 
-            //}
+                    }
+
+                }
+                catch (IOException)
+                {
+
+                    MessageBox.Show("(File Not Found!");
+                }
+
+                graphicsPanel1.Invalidate();
+
+            }
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
