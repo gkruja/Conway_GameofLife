@@ -41,71 +41,31 @@ namespace Conway_GameofLife
 
         private void GridColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog grid = new ColorDialog();
-            grid.Color = Settings.Default.Gridlines;
-            if (DialogResult.OK == grid.ShowDialog())
-            {
-                Settings.Default.Gridlines = grid.Color;
-                GridColorButton.BackColor = grid.Color;
-            }
+
         }
 
         private void Grid_10ColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog grid10 = new ColorDialog();
-            grid10.Color = Settings.Default.Gridlinesx10;
-            if (DialogResult.OK == grid10.ShowDialog())
-            {
-                Settings.Default.Gridlinesx10 = grid10.Color;
-                Grid_10ColorButton.BackColor = grid10.Color;
-            }
+
         }
 
         private void BackgroundColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog background = new ColorDialog();
-            background.Color = Settings.Default.BackGroundColor;
-            if (DialogResult.OK == background.ShowDialog())
-            {
-                Settings.Default.BackGroundColor = background.Color;
-                BackgroundColorButton.BackColor = background.Color;
-            }
 
         }
 
         private void LiveLivingCellColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog LL = new ColorDialog();
-            LL.Color = Settings.Default.StillAliveColor;
-            if (DialogResult.OK == LL.ShowDialog())
-            {
-                Settings.Default.StillAliveColor = LL.Color;
-                LiveLivingCellColorButton.BackColor = LL.Color;
-            }
 
         }
 
         private void LivingCellColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog LC = new ColorDialog();
-            LC.Color = Settings.Default.DyingNextColor;
-            if (DialogResult.OK == LC.ShowDialog())
-            {
-                Settings.Default.DyingNextColor = LC.Color;
-                LivingCellColorButton.BackColor = LC.Color;
-            }
 
         }
 
         private void DeadLivingCellColorButton_Click(object sender, EventArgs e)
         {
-            ColorDialog DL = new ColorDialog();
-            DL.Color = Settings.Default.LivingNextColor;
-            if (DialogResult.OK == DL.ShowDialog())
-            {
-                Settings.Default.LivingNextColor = DL.Color;
-                DeadLivingCellColorButton.BackColor = DL.Color;
-            }
 
         }
 

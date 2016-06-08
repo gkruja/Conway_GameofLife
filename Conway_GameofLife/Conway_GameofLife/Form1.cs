@@ -58,14 +58,13 @@ namespace Conway_GameofLife
         }
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
-            graphicsPanel1.BackColor = Settings.Default.BackGroundColor;
+
 
 
             if (Settings.Default.ViewGrid ==true)
             {
-                Utility.DrawGrid(universe, e.Graphics, graphicsPanel1);
                 Utility.DrawGrid_10(e.Graphics, graphicsPanel1);
-
+                Utility.DrawGrid(universe, e.Graphics, graphicsPanel1);
             }
             if (Settings.Default.ViewHud ==true)
             {
