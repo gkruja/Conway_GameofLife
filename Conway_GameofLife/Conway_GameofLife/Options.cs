@@ -108,5 +108,23 @@ namespace Conway_GameofLife
             }
 
         }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            //Settings.Default.Width = 50;
+            //Settings.Default.Height = 50;
+            //Settings.Default.TimeInterval = 20;
+            //Settings.Default.NeightborCountColor = Color.Red;
+            //Settings.Default.LivingNextColor = Color.LightYellow;
+            //Settings.Default.DyingNextColor = Color.LightGray;
+            //Settings.Default.StillAliveColor = Color.LightGreen;
+            //Settings.Default.TypeOfUniverse = "finite";
+            //Settings.Default.ViewGrid = true;
+            //Settings.Default.ViewHud = true;
+            //Settings.Default.ViewNeightbors = true;
+            //Settings.Default.Gridlines = Color.Black;
+            //Settings.Default.Gridlinesx10 = Color.Black;
+            //Settings.Default.BackGroundColor = Color.White;
+        }
     }
 }

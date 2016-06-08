@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using Conway_GameofLife.Properties;
 
 
@@ -22,11 +23,13 @@ namespace Conway_GameofLife
         public Form1()
         {
             InitializeComponent();
+            Settings.Default.ViewNeightbors = false;
             timer.Interval = Settings.Default.TimeInterval;
             timer.Tick += Timer_Tick;
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
+
             // Call next generation
             living = 0;
             generation++;
@@ -134,6 +137,64 @@ namespace Conway_GameofLife
             Timer_Tick(sender, e);
         }
 
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            
+            //OpenFileDialog open = new OpenFileDialog();
+            
+            //if (DialogResult.OK == open.ShowDialog())
+            //{
+            //    try
+            //    {
+            //        if (open.OpenFile() != null)
+            //        {
+            //            StreamReader read = new StreamReader(open.FileName);
+            //            string Fileread = read.ReadToEnd();
+            //            string[] split = { "\r\n" };
+
+            //            Settings.Default.Width = 50;
+            //            Settings.Default.Height = 50;
+            //            Array.Clear(universe, 0, universe.Length);
+            //            universe = ResizeArray(universe, 50, 50);
+            //            UniverseNext = ResizeArray(UniverseNext, 50,50);
+
+            //            string [] ReadSplit = Fileread.Split(split,StringSplitOptions.RemoveEmptyEntries);
+            //            for (int i = 0; i < ReadSplit.Length ; ++i)
+            //            {
+            //                if (ReadSplit[i].Contains("!"))
+            //                {
+                                
+            //                }
+            //                else
+            //                {
+            //                    for (int j = 0; j < ReadSplit[i].Length;j++)
+            //                    {
+            //                         if (ReadSplit[i][j] == 'O')
+            //                            universe[j,i] = true;                                    
+            //                    }
+            //                }
+            //            }
+            //            read.Close();
+
+            //        }
+
+            //    }
+            //    catch (IOException)
+            //    {
+
+            //        MessageBox.Show("(File Not Found!");
+            //    }
+                
+            //    graphicsPanel1.Invalidate();
+
+            //}
+        }
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
@@ -141,6 +202,7 @@ namespace Conway_GameofLife
         //  http://stackoverflow.com/questions/6539571/how-to-resize-multidimensional-2d-array-in-c
         T[,] ResizeArray<T>(T[,] original, int rows, int cols)
         {
+            Array.Clear(original, 0, original.Length);
             var newArray = new T[rows, cols];
             int minRows = Math.Min(rows, original.GetLength(0));
             int minCols = Math.Min(cols, original.GetLength(1));

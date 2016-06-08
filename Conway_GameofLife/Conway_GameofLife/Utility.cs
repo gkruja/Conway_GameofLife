@@ -14,7 +14,6 @@ namespace Conway_GameofLife
 
 
 
-
         public static void DrawGrid_10(Graphics e,GraphicsPanel graphicsPanel1)
         {
             float width = (float)graphicsPanel1.ClientSize.Width / (float)Settings.Default.Width;
@@ -31,15 +30,11 @@ namespace Conway_GameofLife
                 {
                     Pen mypen = new Pen(Settings.Default.Gridlinesx10, 2f);
                     e.DrawLine(mypen, 0, height * i * 10, (float)graphicsPanel1.ClientSize.Width, height * i * 10);
-
                 }
-            
-
-            
+                        
                 for (int j = 0; j < width10 / width; j++)
                 {
                     Pen mypen = new Pen(Settings.Default.Gridlinesx10, 2f);
-
                     e.DrawLine(mypen, width * j * 10, 0, width * j * 10, (float)graphicsPanel1.ClientSize.Height);
                 }
             
@@ -158,7 +153,6 @@ namespace Conway_GameofLife
 
         public static void NextGeneration(bool[,] universe,bool[,] UniverseNext)
         {
-
             for (int y = 0; y < Settings.Default.Height; y++)
             {
                 for (int x = 0; x < Settings.Default.Width; x++)
@@ -183,10 +177,6 @@ namespace Conway_GameofLife
                         UniverseNext[x, y] = false;
                 }
             }
-
         }
-
-
-
     }
 }
