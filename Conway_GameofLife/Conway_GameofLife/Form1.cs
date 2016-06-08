@@ -27,7 +27,6 @@ namespace Conway_GameofLife
             timer.Interval = Settings.Default.TimeInterval;
             timer.Tick += Timer_Tick;
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
 
@@ -57,7 +56,6 @@ namespace Conway_GameofLife
 
             
         }
-
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -93,7 +91,6 @@ namespace Conway_GameofLife
             universe[x, y] = !universe[x, y];
                 graphicsPanel1.Invalidate();
         }
-
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             Array.Clear(universe, 0, universe.Length);
@@ -103,21 +100,18 @@ namespace Conway_GameofLife
             toolStripStatusLabel1.Text = "Generation: " + generation.ToString();
             graphicsPanel1.Invalidate();
         }
-
         private void PlaytoolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
             PlaytoolStripButton.Enabled = false;
             PausetoolStripButton.Enabled = true;
         }
-
         private void PausetoolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
             PlaytoolStripButton.Enabled = true;
             PausetoolStripButton.Enabled = false;
         }
-
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Options temp = new Options();
@@ -132,13 +126,11 @@ namespace Conway_GameofLife
             }
 
         }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             
             Settings.Default.Save();
         }
-
         private void SteptoolStripButton_Click(object sender, EventArgs e)
         {
             Timer_Tick(sender, e);
@@ -201,15 +193,6 @@ namespace Conway_GameofLife
         {
 
         }
-
-
-
-
-
-
-
-
-
 
 
 
