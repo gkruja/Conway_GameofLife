@@ -18,7 +18,7 @@ namespace Conway_GameofLife
         public static Color LivingNextColor { get; set; }
         public static Color DyingNextColor { get; set; }
         public static Color StillAliveColor { get; set; }
-        public static string TypeOfUniverse { get; set; }
+        public static bool TypeOfUniverse { get; set; }
         public static bool ViewGrid { get; set; }
         public static bool ViewHud { get; set; }
         public static bool ViewNeightbors { get; set; }
@@ -29,10 +29,10 @@ namespace Conway_GameofLife
 
         public static void DrawGrid_10(Graphics e,GraphicsPanel graphicsPanel1)
         {
-            float width = (float)graphicsPanel1.ClientSize.Width / (float)Settings.Default.Width;
-            float height = (float)graphicsPanel1.ClientSize.Height / (float)Settings.Default.Height;
-            float width10 = (float)graphicsPanel1.ClientSize.Width / (float)(Settings.Default.Width / 10);
-            float height10 = (float)graphicsPanel1.ClientSize.Height / (float)(Settings.Default.Height / 10);
+            float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
+            float height = (float)graphicsPanel1.ClientSize.Height / (float)Utility.Height;
+            float width10 = (float)graphicsPanel1.ClientSize.Width / (float)(Utility.Width / 10);
+            float height10 = (float)graphicsPanel1.ClientSize.Height / (float)(Utility.Height / 10);
 
 
             if (float.IsInfinity(height10))
@@ -41,14 +41,14 @@ namespace Conway_GameofLife
                 width10 = 0;
                 for (int i = 0; i < height10 / height; i++)
                 {
-                    Pen mypen = new Pen(Settings.Default.Gridlinesx10, 2f);
+                    Pen mypen = new Pen(Utility.Gridlinesx10, 2f);
 
                     e.DrawLine(mypen, 0, height * i * 10, (float)graphicsPanel1.ClientSize.Width, height * i * 10);
                 }
                         
                 for (int j = 0; j < width10 / width; j++)
                 {
-                    Pen mypen = new Pen(Settings.Default.Gridlinesx10, 2f);
+                    Pen mypen = new Pen(Utility.Gridlinesx10, 2f);
                     e.DrawLine(mypen, width * j * 10, 0, width * j * 10, (float)graphicsPanel1.ClientSize.Height);
                 }
             
@@ -59,7 +59,7 @@ namespace Conway_GameofLife
         {
             float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
             float height = (float)graphicsPanel1.ClientSize.Height / (float)Utility.Height;
-            
+            graphicsPanel1.BackColor = Utility.BackGroundColor;
             for (int y = 0; y < Utility.Height; y++)
             {
                 for (int x = 0; x < Utility.Width; x++)
@@ -89,7 +89,7 @@ namespace Conway_GameofLife
                     {
                         e.FillRectangle(new Pen(Utility.LivingNextColor).Brush, temp);
                     }
-
+                    if(ViewGrid == true)
                     e.DrawRectangle(Pens.Black, temp.X, temp.Y, temp.Width, temp.Height);
                     if (GetNaighbors(x,y,universe) > 0 && Utility.ViewNeightbors ==true)
                     {
@@ -116,9 +116,19 @@ namespace Conway_GameofLife
                 if (universe[x - 1, y] == true)
                     count++;
             }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x - 1 + Width) % Width, y] == true)
+                    count++;
+            }
             if (y > 0)
             {
                 if (universe[x, y - 1] == true)
+                    count++;
+            }
+            else if (TypeOfUniverse)
+            {
+                if (universe[x, (y - 1 + Height) % Height] == true)
                     count++;
             }
             if (y > 0 && x > 0)
@@ -126,9 +136,19 @@ namespace Conway_GameofLife
                 if (universe[x - 1, y - 1] == true)
                     count++;
             }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x - 1 + Width) % Width, (y - 1 + Height) % Height] == true)
+                    count++;
+            }
             if (x < universe.GetLength(0) - 1)
             {
                 if (universe[x + 1, y] == true)
+                    count++;
+            }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x + 1 + Width) % Width, y] == true)
                     count++;
             }
             if (y < universe.GetLength(1) - 1)
@@ -136,9 +156,19 @@ namespace Conway_GameofLife
                 if (universe[x, y + 1] == true)
                     count++;
             }
+            else if (TypeOfUniverse)
+            {
+                if (universe[x, (y + 1 + Height) % Height] == true)
+                    count++;
+            }
             if (y < universe.GetLength(1) - 1 && x < universe.GetLength(0) - 1)
             {
                 if (universe[x + 1, y + 1] == true)
+                    count++;
+            }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x+1+Width)%Width, (y + 1 + Height) % Height] == true)
                     count++;
             }
             if (x > 0 && y < universe.GetLength(1) - 1)
@@ -146,14 +176,38 @@ namespace Conway_GameofLife
                 if (universe[x - 1, y + 1] == true)
                     count++;
             }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x-1+Width)%Width,(y+1+Height)%Height] == true)
+                    count++;
+            }
             if (y > 0 && x < universe.GetLength(0) - 1)
             {
                 if (universe[x + 1, y - 1] == true)
                     count++;
             }
+            else if (TypeOfUniverse)
+            {
+                if (universe[(x+1+Width)%Width, (y-1+Height)%Height] == true)
+                    count++;
+            }
 
+            //for (int i = -1; i <= 1; i++)
+            //{
+            //    if (TypeOfUniverse && y + i < 0 || y + i >= Height)
+            //        continue;
 
-            return count;
+            //    int l = (y + i + Height) % Height;
+            //    for (int j = -1; j  <=1; j++)
+            //    {
+            //        if (TypeOfUniverse && x + j < 0 || x + j >= Width)
+            //            continue;
+            //        int w = (x + j + Width) % Width;
+
+            //        count += universe[w, l] ? 1 : 0;
+            //    }
+            //}
+            return count; //- (universe[x,y]?1:0);
         }
 
         public static void HUD(Graphics e,GraphicsPanel graphicsPanel1, int generation,int living)

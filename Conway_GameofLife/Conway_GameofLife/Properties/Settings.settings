@@ -23,8 +23,8 @@
     <Setting Name="StillAliveColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Green</Value>
     </Setting>
-    <Setting Name="TypeOfUniverse" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Finite</Value>
+    <Setting Name="TypeOfUniverse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ViewGrid" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

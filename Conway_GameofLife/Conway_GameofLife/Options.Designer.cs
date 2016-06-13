@@ -54,7 +54,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.OkButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.CancelButton_Options = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -326,15 +326,15 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // CancelButton
+            // CancelButton_Options
             // 
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(93, 232);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton_Options.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelButton_Options.Location = new System.Drawing.Point(93, 232);
+            this.CancelButton_Options.Name = "CancelButton_Options";
+            this.CancelButton_Options.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton_Options.TabIndex = 1;
+            this.CancelButton_Options.Text = "Cancel";
+            this.CancelButton_Options.UseVisualStyleBackColor = true;
             // 
             // ResetButton
             // 
@@ -353,7 +353,7 @@
             this.ClientSize = new System.Drawing.Size(470, 267);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CancelButton_Options);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Options";
@@ -380,7 +380,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button CancelButton_Options;
         private System.Windows.Forms.NumericUpDown Height_UD;
         private System.Windows.Forms.NumericUpDown Width_UD;
         private System.Windows.Forms.NumericUpDown Timer_UD;

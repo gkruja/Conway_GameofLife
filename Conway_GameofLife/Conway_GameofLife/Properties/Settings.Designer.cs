@@ -109,10 +109,10 @@ namespace Conway_GameofLife.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Finite")]
-        public string TypeOfUniverse {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TypeOfUniverse {
             get {
-                return ((string)(this["TypeOfUniverse"]));
+                return ((bool)(this["TypeOfUniverse"]));
             }
             set {
                 this["TypeOfUniverse"] = value;
