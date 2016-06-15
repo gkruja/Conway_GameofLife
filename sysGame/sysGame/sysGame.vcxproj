@@ -150,6 +150,10 @@
     <ClCompile Include="..\..\..\..\..\Desktop\sys\Lecture5\Console.cpp" />
     <ClCompile Include="..\..\..\..\..\Desktop\sys\Lecture5\stdafx.cpp" />
     <ClCompile Include="..\..\..\..\..\Desktop\sys\Lecture5\Vehicle.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +162,10 @@
     <ClInclude Include="..\..\..\..\..\Desktop\sys\Lecture5\stdafx.h" />
     <ClInclude Include="..\..\..\..\..\Desktop\sys\Lecture5\targetver.h" />
     <ClInclude Include="..\..\..\..\..\Desktop\sys\Lecture5\Vehicle.h" />
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
