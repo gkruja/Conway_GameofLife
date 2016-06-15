@@ -6,6 +6,9 @@ private:
 	int speed;
 	ConsoleColor color;
 	int x, y;
+	bool alive;
+	bool coinorenemy; //coin or enemy check for points or kill;
+
 
 public:
 	Base();
@@ -18,7 +21,8 @@ public:
 	const char * const GetName() const { return model.c_str(); }
 	int GetX() const { return x; }
 	int GetY() const { return y; }
-
+	bool GetType() const { return coinorenemy; }
+	bool GetCollide() const { return alive; }
 	/*
 	p  ----->  "TJ"
 	0x11        0x11

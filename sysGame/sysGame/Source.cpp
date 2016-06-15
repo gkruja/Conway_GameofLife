@@ -1,48 +1,49 @@
-#include "stdafx.h"
-#include "Vehicle.h"
+#include "Utility.h"
+#include "Base.h"
+#include "Player.h"
+#include "Obstacle.h"
+#include "Game.h"
+ 
 
 int MenuRun();
-void CleanUp(Vehicle* v);
+void CleanUp(Base* v);
 int main()
 {
 	//Also need this for memory leak code stuff
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	_CrtSetBreakAlloc(-1);
+	// Console stuff
+	Console::SetWindowSize(100, 30);
+	Console::SetBufferSize(100, 30);
+	Console::EOLWrap(false);
+	Console::CursorVisible(false);
+
+	vector<Base*> population;
 	int menu = 0;
 
-	Vehicle* v = new Vehicle(10, 10, 1, White, "<[|]>");
+
+	population.push_back(new Player(50, 15, 2, White, "<[|]>"));
 
 	// runs the menu Function;
 	while (true)
 	{
 		menu = MenuRun();
-		if (menu == 4) { CleanUp(v); return 0; }
+		if (menu == 4) { CleanUp(population[0]); return 0; }
 
-		if (menu == 1) break;
+		if (menu == 1) 
+			break;
 	}
 
 
 
 	Console::Clear();
 
-	while (menu = 1)
-	{
-
-		if (GetAsyncKeyState(VK_ESCAPE))
-			break;
-
-		Console::Lock(true);
-		
-		system("cls");
-		v->Move();
-		v->Display();
-
-		Console::Lock(false);
-		Sleep(5);
-	}
+	Game::Run(population);
 
 
-	CleanUp(v);
+
+
+	CleanUp(population[0]);
 	cout << "\n\n\n";
 	system("pause");
 
@@ -54,7 +55,7 @@ int main()
 
 
 
-void CleanUp(Vehicle* v)
+void CleanUp(Base* v)
 {
 	delete v;
 }
@@ -62,7 +63,7 @@ void CleanUp(Vehicle* v)
 int MenuRun()
 {
 	bool loop = true;
-	int menu = 0, run, x = 0;
+	int menu = 0, x = 0;
 
 
 
@@ -101,7 +102,7 @@ int MenuRun()
 			{
 
 			case 0:
-				return 0;
+				return 1;
 			
 			case 1:
 			{

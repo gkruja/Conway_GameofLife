@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Utility.h"
 #include "Base.h"
 
 
@@ -25,43 +25,17 @@ void Base::SetModel(string _model)
 {
 	model = _model;
 
-	//model "viper" 0x22
-	//model ----> "iiii" 0x33
-	//delete[] model;
 
-	/*int size = strlen(_model) + 1;
-	model = new char[size];
-	strcpy_s(model, size, _model);*/
-
-	//model = strdup(_model);
 }
 
 void Base::Render()
 {
-	Console::ForegroundColor(color);
-	Console::SetCursorPosition(x, y);
-	cout << model;
-	Console::ResetColor();
+
 }
 
  void Base::Update()
 {
-	int dx = 0;
-	int dy = 0;
 
-	if (GetAsyncKeyState('W')) dy = -1;
-	if (GetAsyncKeyState('S')) dy = 1;
-	if (GetAsyncKeyState('A')) dx = -1;
-	if (GetAsyncKeyState('D')) dx = 1;
-
-	if (dx || dy)
-	{
-		int newx = GetX() + dx;
-		SetX(newx);
-
-		int newy = GetY() + dy;
-		SetY(newy);
-	}
 
 }
 
