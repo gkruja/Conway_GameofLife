@@ -10,7 +10,7 @@
 public:
 	Game();
 	~Game();
-	void static Run(vector<Base*>& _pop);
+	void static Run(vector<Base*>& _pop,int lbsize);
 private:
 	void static Update(vector<Base*>& _pop);
 	void static Render(vector<Base*>& _pop);

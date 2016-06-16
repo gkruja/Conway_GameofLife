@@ -39,7 +39,7 @@ Obstacle::Obstacle(int _x, int _y, int _speed, ConsoleColor _color, const char* 
 	{
 		srand(time(NULL));
 
-		SetY((rand() % Console::WindowHeight()-2));
+		SetY((rand() % Console::WindowHeight()-2)+2);
 		horz = true;
 		srand(time(NULL));
 

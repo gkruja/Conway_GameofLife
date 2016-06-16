@@ -41,7 +41,7 @@ Player::~Player()
 		Base::SetY(newy);
 	}
 
-	if (Base::GetX() > Console::WindowWidth()-6)
+	if (Base::GetX() > Console::WindowWidth()-2)
 	{
 		int newx = Base::GetX() -1;
 		Base::SetX(newx);

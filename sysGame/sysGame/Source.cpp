@@ -3,12 +3,24 @@
 #include "Player.h"
 #include "Obstacle.h"
 #include "Game.h"
- 
+#include <mciapi.h>
+#include <Windows.h>
+#include <MMSystem.h> 
+
+//these two headers are already included in the <Windows.h> header
+#pragma comment(lib, "Winmm.lib")
 
 int MenuRun();
 void CleanUp(vector<Base*> _pop);
+
+
 int main()
 {
+	//char* WAV = "C://Users/gkruja/Documents/GitHub/Conway_wpf/sysGame/sysGame/music.wav";// cow.wav is a piano song in hard drive 
+	//sndPlaySound((LPWSTR)WAV, SND_ASYNC);
+	 int LBsize = 10;
+	PlaySound(L"music.wav", NULL, SND_ASYNC);
+
 	//Also need this for memory leak code stuff
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	_CrtSetBreakAlloc(-1);
@@ -22,7 +34,7 @@ int main()
 	int menu = 0;
 
 
-	population.push_back(new Player(50, 15, 2, White, "<[|]>"));
+	population.push_back(new Player(50, 15, 2, White, "T"));
 
 	// runs the menu Function;
 	while (true)
@@ -30,16 +42,18 @@ int main()
 		menu = MenuRun();
 		if (menu == 4) { CleanUp(population); return 0; }
 
-		if (menu == 1) 
-			break;
+		if (menu == 1)
+			Game::Run(population, LBsize);
+		if (menu > 4)
+			LBsize = menu;
+
+
+
+
+		Console::Clear();
+
+		
 	}
-
-
-
-	Console::Clear();
-
-	Game::Run(population);
-
 
 
 
@@ -110,19 +124,21 @@ int MenuRun()
 			
 			case 1:
 			{
+				int temp=0;
 				Console::SetCursorPosition(20, 16);
-				cout << "Use W,A,S,D to control the player";
-				Console::SetCursorPosition(20, 17);
-				cout << "avoid the Red player 'v'";
-				Console::SetCursorPosition(20, 18);
-				cout << "collect the '$' objects to increase your score";
-				break;
+				cout << "How Large would you like the Leader board to be? (min of 5)";
+				cin >> temp;
+				return temp;
 			}
 
 			case 2:
 			{
-				Console::SetCursorPosition(20, 16);
-				cout << "You chose Option 3...     ";
+
+				Console::SetCursorPosition(20, 17);
+				cout << "avoid the Red player 'v'";
+				Console::SetCursorPosition(20, 18);
+				cout << "collect the '$' objects to increase your score";
+				Console::SetCursorPosition(20, 19);
 				break;
 			}
 
