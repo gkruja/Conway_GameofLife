@@ -25,41 +25,47 @@ Player::~Player()
 
  void  Player::Update()
 {
-	 bool nochange = true;
+	bool nochange = true;
 	int dx = 0;
 	int dy = 0;
 	if (GetAsyncKeyState('W')) dy = -1;
 	if (GetAsyncKeyState('S')) dy = 1;
 	if (GetAsyncKeyState('A')) dx = -1;
 	if (GetAsyncKeyState('D')) dx = 1;
-	
-
-	
-
-	if (Base::GetX() > 94)
-	{
-		dx = -1; nochange = false;
-	}	
-	if (Base::GetY() > 29)
-	{
-		dy = -1; nochange = false;
-	}
-	if (Base::GetX() < 0)
-		dx = 1;
-	if (Base::GetY() < 2)
-	{
-		dy = 0; nochange = false;
-	}
-
 	if (dx || dy && nochange)
 	{
 		int newx = Base::GetX() + dx;
-		Base :: SetX(newx);
+		Base::SetX(newx);
 
 		int newy = Base::GetY() + dy;
-		Base :: SetY(newy);
+		Base::SetY(newy);
 	}
 
+	if (Base::GetX() > Console::WindowWidth()-6)
+	{
+		int newx = Base::GetX() -1;
+		Base::SetX(newx);
+
+
+	}	
+	if (Base::GetY() > Console::WindowHeight()-3)
+	{
+		int newy = Base::GetY() - 1;
+		Base::SetY(newy);
+
+	}
+	if (Base::GetX() < 1)
+	{
+		int newx = Base::GetX() + 1;		
+		Base::SetX(newx);
+
+	}
+	if (Base::GetY() < 2)
+	{
+		int newy = Base::GetY() + 1;
+		Base::SetY(newy);
+
+	}
 
 
 

@@ -3,7 +3,7 @@
 class Obstacle :public Base
 {
 private:
-	int seed;
+	bool enemy;
 	bool horz;
 	bool vert;
 
@@ -13,7 +13,6 @@ public:
 	Obstacle();
 	Obstacle::Obstacle(int _x, int _y, int _speed, ConsoleColor _color, const char* const _model);
 	virtual ~Obstacle();
-
 
 
 

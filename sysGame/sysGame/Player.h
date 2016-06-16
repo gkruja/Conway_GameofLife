@@ -2,6 +2,10 @@
 #include "Base.h"
 class Player : public Base
 {
+private:
+	bool enemy;
+	bool horz;
+	bool vert;
 
 public:
 	Player();

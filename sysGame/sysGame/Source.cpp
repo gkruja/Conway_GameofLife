@@ -6,7 +6,7 @@
  
 
 int MenuRun();
-void CleanUp(Base* v);
+void CleanUp(vector<Base*> _pop);
 int main()
 {
 	//Also need this for memory leak code stuff
@@ -28,7 +28,7 @@ int main()
 	while (true)
 	{
 		menu = MenuRun();
-		if (menu == 4) { CleanUp(population[0]); return 0; }
+		if (menu == 4) { CleanUp(population); return 0; }
 
 		if (menu == 1) 
 			break;
@@ -43,7 +43,7 @@ int main()
 
 
 
-	CleanUp(population[0]);
+	CleanUp(population);
 	cout << "\n\n\n";
 	system("pause");
 
@@ -55,9 +55,14 @@ int main()
 
 
 
-void CleanUp(Base* v)
+void CleanUp(vector<Base*> _pop)
 {
-	delete v;
+	decltype(_pop.size()) i = 0;
+
+	for ( ; i < _pop.size(); ++i)
+		delete _pop[i];
+
+
 }
 
 int MenuRun()
@@ -70,14 +75,13 @@ int MenuRun()
 	while (loop)
 	{
 		Console::SetCursorPosition(4, 0); cout << "1) PLAY";
-		Console::SetCursorPosition(4, 1);  cout << "2) Output";
-		Console::SetCursorPosition(4, 2);  cout << "3) ...";
-		Console::SetCursorPosition(4, 3); cout << "4) ...";
-		Console::SetCursorPosition(4, 4); cout << "Quit Program";
+		Console::SetCursorPosition(4, 1);  cout << "2) Settings";
+		Console::SetCursorPosition(4, 2);  cout << "3) Help";
+		Console::SetCursorPosition(4, 3); cout << "Quit Program";
 
 		system("pause>nul"); // the >nul bit causes it the print no message
 
-		if (GetAsyncKeyState(VK_DOWN) && x != 4) //down button pressed
+		if (GetAsyncKeyState(VK_DOWN) && x != 3) //down button pressed
 		{
 			Console::SetCursorPosition(0, x); cout << "  ";
 			x++;
@@ -107,7 +111,11 @@ int MenuRun()
 			case 1:
 			{
 				Console::SetCursorPosition(20, 16);
-				cout << "You chose Output...     ";
+				cout << "Use W,A,S,D to control the player";
+				Console::SetCursorPosition(20, 17);
+				cout << "avoid the Red player 'v'";
+				Console::SetCursorPosition(20, 18);
+				cout << "collect the '$' objects to increase your score";
 				break;
 			}
 
@@ -121,16 +129,10 @@ int MenuRun()
 			case 3:
 			{
 				Console::SetCursorPosition(20, 16);
-				cout << "You chose Option 4...     ";
-				break;
-			}
-
-			case 4:
-			{
-				Console::SetCursorPosition(20, 16);
 				cout << "The program has now terminated!!";
 				return 4;
 			}
+
 
 			}
 
