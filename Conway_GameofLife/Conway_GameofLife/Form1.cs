@@ -80,18 +80,25 @@ namespace Conway_GameofLife
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
-            float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
-            float height = (float)graphicsPanel1.ClientSize.Height / (float)Utility.Height;
+            if (e.Button == MouseButtons.Left)
+            {
+                float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
+                float height = (float)graphicsPanel1.ClientSize.Height / (float)Utility.Height;
 
-            int x = (int)(e.X /width);
-            int y = (int)(e.Y /height);
+                int x = (int)(e.X / width);
+                int y = (int)(e.Y / height);
 
-            if (universe[x, y] == false)
-                living++;
-            else
-                living--;
-            universe[x, y] = !universe[x, y];
+                if (universe[x, y] == false)
+                    living++;
+                else
+                    living--;
+                universe[x, y] = !universe[x, y];
                 graphicsPanel1.Invalidate();
+            }
+            else
+            {
+                contextMenuStrip1.Show(e.Location);
+            }
         }
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
@@ -236,11 +243,13 @@ namespace Conway_GameofLife
             if (vIewGridToolStripMenuItem.Checked)
             {
                 vIewGridToolStripMenuItem.Checked = false;
+                viewGridToolStripMenuItem1.Checked = false;
                 Utility.ViewGrid = false;
             }
             else
             {
                 vIewGridToolStripMenuItem.Checked = true;
+                viewGridToolStripMenuItem1.Checked = true;
                 Utility.ViewGrid = true;
             }
             graphicsPanel1.Invalidate();
@@ -252,11 +261,13 @@ namespace Conway_GameofLife
             if (viewHUDToolStripMenuItem.Checked)
             {
                 viewHUDToolStripMenuItem.Checked = false;
+                viewHUDToolStripMenuItem1.Checked = false;
                 Utility.ViewHud = false;
             }
             else
             {
                 viewHUDToolStripMenuItem.Checked = true;
+                viewHUDToolStripMenuItem1.Checked = true;
                 Utility.ViewHud = true;
             }
             graphicsPanel1.Invalidate();
@@ -268,11 +279,14 @@ namespace Conway_GameofLife
             if (viewNeighborsToolStripMenuItem.Checked)
             {
                 viewNeighborsToolStripMenuItem.Checked = false;
+                viewNeightborsToolStripMenuItem.Checked = false;
                 Utility.ViewNeightbors = false;
             }
             else
             {
                 viewNeighborsToolStripMenuItem.Checked = true;
+                viewNeightborsToolStripMenuItem.Checked = true;
+
                 Utility.ViewNeightbors = true;
             }
             graphicsPanel1.Invalidate();
