@@ -7,16 +7,13 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
 
 int score = 0;
 bool dead = false;
 int coin = 0;
 
-struct Info
-{
-	char name[32];
-	int score=0;
-};
 
 Game::Game()
 {
@@ -29,7 +26,7 @@ Game::~Game()
 
 }
 
-void Game::Run(vector<Base*>& _pop,int lbsize)
+void Game::Run(vector<Base*>& _pop,int lbsize,char FileName[32],char PlayerName[32])
 {
 	ifstream fin;
 	vector<Info> records;
@@ -56,7 +53,6 @@ void Game::Run(vector<Base*>& _pop,int lbsize)
 			fin.getline(person.name, INT_MAX, '\t');
 			fin >> person.score;
 			fin.ignore(INT_MAX, '\n');
-
 			records.push_back(person);
 		}
 
@@ -101,7 +97,7 @@ void Game::Run(vector<Base*>& _pop,int lbsize)
 		Sleep(20);
 		if (count<score)
 		{
-			srand(time(0));
+			srand(time(NULL));
 			_pop.push_back(new Obstacle(0, 0, 0, Red, "V"));
 			count++;
 			flip = true;
@@ -111,14 +107,33 @@ void Game::Run(vector<Base*>& _pop,int lbsize)
 
 		if (coinspawn == 30)
 		{
-			flip = false;
+			flip = true;
 			coinspawn = 0;
-			srand(time(0));
+			srand(time(NULL));
 			_pop.push_back(new Obstacle(0, 0, 1, Green, "$"));
 		}
 
 		if (dead)
+		{
+			// delete all but the player
+			decltype(_pop.size()) i = 1;
+
+			for (; i < _pop.size(); i++)
+			{
+				delete _pop[i];
+			}
+			for (i=1; i <= _pop.size()-1; i++)
+			{
+				 _pop.erase(_pop.begin()+1);
+				 i--;
+			}
+			flip = false;
+
+			coinspawn = 0;
+			dead = false;
+
 			break;
+		}
 
 	}
 
@@ -136,24 +151,34 @@ void Game::Run(vector<Base*>& _pop,int lbsize)
 	ofstream fout;
 
 
-	fout.open("save.txt", ios_base::trunc);
-
+	fout.open("save.txt");
+	int size = records.size();
 	if (fout.is_open())
 	{
 		decltype(records.size()) i = 0;
-		for (; i < records.size(); ++i)
-			fout << records[i].name << '\t' << records[i].score << '\n';
+		for (; i < size ; i++)
+		{
+			if(i<lbsize)
+			fout << records[i].name << '\t' << records[i].score ;
+			if(i < size-1 )
+				fout << '\n';
+
+
+		}
 
 		fout.close();
 	}
 
-	for (int i = 0; i < lbsize; i++)
+	for (int i = 0; i < records.size() ; i++)
 	{
 		Console::SetCursorPosition(20, (5+i));
+		if(i<lbsize)
 		cout << records[i].name << '\t' << records[i].score;
 	}
 
+	system("pause>nul");
 
+	score = 0;
 
 }
 
@@ -222,3 +247,15 @@ void Game::Render(vector<Base*>& _pop)
 
 	}
 }
+
+
+
+void  Game ::SaveFile(vector<Game::Info>& records,char Filename[32])
+{
+
+}
+void  Game :: OpenFile(vector<Game::Info>& records)
+{
+
+}
+

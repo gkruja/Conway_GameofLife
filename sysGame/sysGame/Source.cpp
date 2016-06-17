@@ -5,21 +5,22 @@
 #include "Game.h"
 #include <mciapi.h>
 #include <Windows.h>
-#include <MMSystem.h> 
 
-//these two headers are already included in the <Windows.h> header
-#pragma comment(lib, "Winmm.lib")
 
-int MenuRun();
+
+int MenuRun(char FileName[32], char PlayerName[32],int lbsize);
+int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize);
 void CleanUp(vector<Base*> _pop);
 
 
 int main()
 {
-	//char* WAV = "C://Users/gkruja/Documents/GitHub/Conway_wpf/sysGame/sysGame/music.wav";// cow.wav is a piano song in hard drive 
-	//sndPlaySound((LPWSTR)WAV, SND_ASYNC);
+	char FileName[32] ="save";
+	char PlayerName[32] ="player";
+
 	 int LBsize = 10;
-	PlaySound(L"music.wav", NULL, SND_ASYNC);
+	 //music
+	//PlaySound(L"music.wav", NULL, SND_ASYNC);
 
 	//Also need this for memory leak code stuff
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -39,11 +40,11 @@ int main()
 	// runs the menu Function;
 	while (true)
 	{
-		menu = MenuRun();
+		menu = MenuRun(FileName,PlayerName,LBsize);
 		if (menu == 4) { CleanUp(population); return 0; }
 
 		if (menu == 1)
-			Game::Run(population, LBsize);
+			Game::Run(population, LBsize,FileName,PlayerName);
 		if (menu > 4)
 			LBsize = menu;
 
@@ -79,7 +80,7 @@ void CleanUp(vector<Base*> _pop)
 
 }
 
-int MenuRun()
+int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
 {
 	bool loop = true;
 	int menu = 0, x = 0;
@@ -124,11 +125,11 @@ int MenuRun()
 			
 			case 1:
 			{
-				int temp=0;
-				Console::SetCursorPosition(20, 16);
-				cout << "How Large would you like the Leader board to be? (min of 5)";
-				cin >> temp;
-				return temp;
+				//if (SettingsMenu(FileName,PlayerName,lbsize))
+
+
+
+
 			}
 
 			case 2:
@@ -139,6 +140,89 @@ int MenuRun()
 				Console::SetCursorPosition(20, 18);
 				cout << "collect the '$' objects to increase your score";
 				Console::SetCursorPosition(20, 19);
+				break;
+			}
+
+			case 3:
+			{
+				Console::SetCursorPosition(20, 16);
+				cout << "The program has now terminated!!";
+				return 4;
+			}
+
+
+			}
+
+		}
+
+	}
+	return 0;
+}
+
+
+int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize)
+{
+	bool loop = true;
+	int menu = 0, x = 0;
+
+
+
+	while (loop)
+	{
+		Console::SetCursorPosition(4, 0); cout << "LeaderBoard File Name";
+		Console::SetCursorPosition(4, 1);  cout << "Leaderboard Size";
+		Console::SetCursorPosition(4, 2);  cout << "FIle Type";
+		Console::SetCursorPosition(4, 3); cout << "Go Back";
+
+		system("pause>nul"); // the >nul bit causes it the print no message
+
+		// check which arrow key is pressed and move the arrow selector a d incrment for the switch;
+		if (GetAsyncKeyState(VK_DOWN) && x != 3) 
+		{
+			Console::SetCursorPosition(0, x); cout << "  ";
+			x++;
+			Console::SetCursorPosition(0, x); cout << "->";
+			menu++;
+			continue;
+
+		}
+
+		if (GetAsyncKeyState(VK_UP) && x != 0) 
+		{
+			Console::SetCursorPosition(0, x); cout << "  ";
+			x--;
+			Console::SetCursorPosition(0, x); cout << "->";
+			menu--;
+			continue;
+		}
+
+		if (GetAsyncKeyState(VK_RETURN)) { 
+
+			switch (menu)
+			{
+
+			case 0:
+				Console::SetCursorPosition(20, 16);
+				cout << "Enter the LeaderBoard File Name:  ";
+				cin >> FileName;
+				cin.ignore(INT_MAX, '\n');
+
+
+			case 1:
+			{
+				int temp = 0;
+				Console::SetCursorPosition(20, 16);
+				cout << "How Large would you like the Leader board to be? (min of 5)";
+				cin >> temp;
+				cin.ignore(INT_MAX, '\n');
+				return temp;
+
+			}
+
+			case 2:
+			{
+
+				
 				break;
 			}
 
