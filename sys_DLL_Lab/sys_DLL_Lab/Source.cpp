@@ -7,15 +7,15 @@ using namespace std;
 int main(void)
 {
 	DList<char> cList;
-	//cList.push_back('c');
-	//cList.push_back('a');
-	//cList.push_back('t');
-	//cList.push_back('s');
+	cList.push_back('c');
+	cList.push_back('a');
+	cList.push_back('t');
+	cList.push_back('s');
 
-	cList.pop_back('c');
-	cList.pop_back('a');
-	cList.pop_back('t');
-	cList.pop_back('s');
+	cList.Push_front('c');
+	cList.Push_front('a');
+	cList.Push_front('t');
+	cList.Push_front('s');
 
 
 	int i = 0;

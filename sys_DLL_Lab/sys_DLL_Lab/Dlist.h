@@ -24,7 +24,8 @@ public:
 
 	int GetSize() const { return size; }
 	void push_back(type _data);
-	void pop_back(type _data);
+	void Push_front(type _data);
+	void clear();
 
 
 	type& operator[](int _index);
@@ -71,18 +72,37 @@ void DList<type>::push_back(type _data)
 }
 
 _h
-void DList<type>::pop_back(type _data)
+void DList<type>::Push_front(type _data)
 {
 	node* n = new node(_data, first);
 
 	if (first)
+	{
 		first->prev = n;
+		n->next = first;
+	}
 	else
 		last = n;
 
 	first = n;
+	
 	++size;
 }
+
+
+_h
+void DList<type>::clear()
+{
+	node* t = first;
+	int i = 0;
+	while (t != null)
+	{
+
+	}
+	
+	
+}
+
 
 template<typename type>
 type& DList<type>::operator[](int _index)
