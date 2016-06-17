@@ -1,11 +1,20 @@
 #include <iostream>
 #include <vector>
 #include "DList.h"
+//Yes, you need all this for memory leaks
+#include <Windows.h>
 
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
 using namespace std;
 
 int main(void)
 {
+	//Also need this for memory leak code stuff
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetBreakAlloc(-1);
+
 	DList<char> cList;
 	cList.push_back('c');
 	cList.push_back('a');
@@ -27,6 +36,8 @@ int main(void)
 
 	//for (example.size())
 	//	example[i]->Render() const;
+
+	cList.clear();
 
 	cout << "\n\n\n\n";
 	system("pause");

@@ -95,10 +95,19 @@ void DList<type>::clear()
 {
 	node* t = first;
 	int i = 0;
-	while (t != null)
+	while (t->next != NULL)
 	{
-
+		
+		node* t2 = t->next;
+		{
+			cout << t->data;
+			system("pause");
+		}
+		delete t;
+		t = t2;
+		delete t2;
 	}
+	size = 0;
 	
 	
 }
