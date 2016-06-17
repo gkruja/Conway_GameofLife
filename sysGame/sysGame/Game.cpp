@@ -145,8 +145,24 @@ void Game::Run(vector<Base*>& _pop,int lbsize,char FileName[32],char PlayerName[
 	strcpy_s(person.name, 32, name);
 	person.score = score;
 	records.push_back(person);
+	//insertion sort from 
+	int i, j, key, numLength = records.size();
+	for (j = 1; j < numLength; j++)    // Start with 1 (not 0)
+	{
+		key = records[j].score;
+			strcpy_s(name, 32, records[j].name);
 
 
+		for (i = j - 1; (i >= 0) && (records[i].score < key); i--)   // Smaller values move up
+		{
+			records[i + 1].score = records[i].score;
+			strcpy_s(records[i + 1].name, 32, records[i].name);
+
+		}
+		records[i + 1].score = key;    //Put key into its proper location
+		strcpy_s(records[i+1].name, 32, name);
+
+	}
 
 	ofstream fout;
 
@@ -160,7 +176,7 @@ void Game::Run(vector<Base*>& _pop,int lbsize,char FileName[32],char PlayerName[
 		{
 			if(i<lbsize)
 			fout << records[i].name << '\t' << records[i].score ;
-			if(i < size-1 )
+			if(i < (size-1) && i<(lbsize-1) )
 				fout << '\n';
 
 
@@ -172,8 +188,8 @@ void Game::Run(vector<Base*>& _pop,int lbsize,char FileName[32],char PlayerName[
 	for (int i = 0; i < records.size() ; i++)
 	{
 		Console::SetCursorPosition(20, (5+i));
-		if(i<lbsize)
-		cout << records[i].name << '\t' << records[i].score;
+		if(i<10)
+		cout << i+1<<") "<<records[i].name << '\t' << records[i].score;
 	}
 
 	system("pause>nul");

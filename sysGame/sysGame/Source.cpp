@@ -8,8 +8,8 @@
 
 
 
-int MenuRun(char FileName[32], char PlayerName[32],int lbsize);
-int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize);
+int MenuRun(char FileName[32], char PlayerName[32],int& lbsize);
+int SettingsMenu(char FileName[32], char PlayerName[32],int& lbsize);
 void CleanUp(vector<Base*> _pop);
 
 
@@ -20,7 +20,7 @@ int main()
 
 	 int LBsize = 10;
 	 //music
-	//PlaySound(L"music.wav", NULL, SND_ASYNC);
+	PlaySound(L"music.wav", NULL, SND_LOOP | SND_ASYNC);
 
 	//Also need this for memory leak code stuff
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -80,7 +80,7 @@ void CleanUp(vector<Base*> _pop)
 
 }
 
-int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
+int MenuRun(char FileName[32], char PlayerName[32],int& lbsize)
 {
 	bool loop = true;
 	int menu = 0, x = 0;
@@ -89,6 +89,7 @@ int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
 
 	while (loop)
 	{
+
 		Console::SetCursorPosition(4, 0); cout << "1) PLAY";
 		Console::SetCursorPosition(4, 1);  cout << "2) Settings";
 		Console::SetCursorPosition(4, 2);  cout << "3) Help";
@@ -116,6 +117,7 @@ int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
 		}
 
 		if (GetAsyncKeyState(VK_RETURN)) { // Enter key pressed
+			Console::Clear();
 
 			switch (menu)
 			{
@@ -125,9 +127,10 @@ int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
 			
 			case 1:
 			{
-				//if (SettingsMenu(FileName,PlayerName,lbsize))
+				int temp = SettingsMenu(FileName, PlayerName, lbsize);
 
-
+				if (lbsize != temp)
+					lbsize = temp;
 
 
 			}
@@ -160,7 +163,7 @@ int MenuRun(char FileName[32], char PlayerName[32],int lbsize)
 }
 
 
-int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize)
+int SettingsMenu(char FileName[32], char PlayerName[32],int& lbsize)
 {
 	bool loop = true;
 	int menu = 0, x = 0;
@@ -169,15 +172,15 @@ int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize)
 
 	while (loop)
 	{
+
 		Console::SetCursorPosition(4, 0); cout << "LeaderBoard File Name";
 		Console::SetCursorPosition(4, 1);  cout << "Leaderboard Size";
-		Console::SetCursorPosition(4, 2);  cout << "FIle Type";
-		Console::SetCursorPosition(4, 3); cout << "Go Back";
+		Console::SetCursorPosition(4, 2); cout << "Go Back";
 
 		system("pause>nul"); // the >nul bit causes it the print no message
 
 		// check which arrow key is pressed and move the arrow selector a d incrment for the switch;
-		if (GetAsyncKeyState(VK_DOWN) && x != 3) 
+		if (GetAsyncKeyState(VK_DOWN) && x != 2) 
 		{
 			Console::SetCursorPosition(0, x); cout << "  ";
 			x++;
@@ -197,17 +200,19 @@ int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize)
 		}
 
 		if (GetAsyncKeyState(VK_RETURN)) { 
+			Console::Clear();
 
 			switch (menu)
 			{
 
 			case 0:
-				Console::SetCursorPosition(20, 16);
-				cout << "Enter the LeaderBoard File Name:  ";
-				cin >> FileName;
-				cin.ignore(INT_MAX, '\n');
-
-
+			{
+			Console::SetCursorPosition(20, 16);
+			cout << "Enter the LeaderBoard File Name:  ";
+			cin >> FileName;
+			cin.ignore(INT_MAX, '\n');
+			
+			}
 			case 1:
 			{
 				int temp = 0;
@@ -216,17 +221,9 @@ int SettingsMenu(char FileName[32], char PlayerName[32],int lbsize)
 				cin >> temp;
 				cin.ignore(INT_MAX, '\n');
 				return temp;
-
 			}
 
 			case 2:
-			{
-
-				
-				break;
-			}
-
-			case 3:
 			{
 				Console::SetCursorPosition(20, 16);
 				cout << "The program has now terminated!!";
