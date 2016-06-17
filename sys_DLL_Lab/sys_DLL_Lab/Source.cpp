@@ -37,7 +37,17 @@ int main(void)
 	//for (example.size())
 	//	example[i]->Render() const;
 
-	cList.clear();
+	//cList.clear();
+
+	cout << "\n\n\n\n";
+
+
+	cList.erase(4);
+
+
+	for (i=0; i < cList.GetSize(); ++i)
+		cout << cList[i] << '\n';
+
 
 	cout << "\n\n\n\n";
 	system("pause");

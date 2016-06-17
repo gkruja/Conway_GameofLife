@@ -26,6 +26,7 @@ public:
 	void push_back(type _data);
 	void Push_front(type _data);
 	void clear();
+	void erase(int _index);
 
 
 	type& operator[](int _index);
@@ -44,16 +45,7 @@ template<typename type>
 DList<type>::~DList()
 {
 
-	//Clear();
-
-	node* curNode = first;
-	node* nextNode = curNode->next;
-	while (curNode)
-	{
-		nextNode = curNode->next;
-		delete curNode;
-		curNode = nextNode;
-	}
+	clear();
 
 }
 
@@ -93,23 +85,61 @@ void DList<type>::Push_front(type _data)
 _h
 void DList<type>::clear()
 {
-	node* t = first;
-	int i = 0;
-	while (t->next != NULL)
+	while (first)
 	{
-		
-		node* t2 = t->next;
-		{
-			cout << t->data;
-			system("pause");
-		}
+		node* t = first;
+		first = first->next;
 		delete t;
-		t = t2;
-		delete t2;
 	}
 	size = 0;
 	
 	
+}
+
+_h
+void DList<type>::erase(int _index)
+{
+	node* t = first;
+	node* t2 = last;
+	int i = 0;
+	for (; i < _index; ++i, t = t->next);
+
+
+
+
+	if (t->prev == NULL)
+	{
+		node* t = first;
+		first = first->next;
+		delete t;
+		size--;
+	}
+	else if (t->next == NULL)
+	{
+		node* t = last;
+		last = last->prev;
+		delete t;
+		size--;
+	}
+	else if (t == NULL)
+	{
+		
+	}
+	else
+	{
+		t2 = t->prev;
+		t2->next = t->next;
+		t2 = t->next;
+		t2->prev = t->prev;
+		delete t;
+		size--;
+	}
+
+
+
+
+
+
 }
 
 
