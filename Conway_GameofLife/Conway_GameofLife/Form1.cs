@@ -389,7 +389,8 @@ namespace Conway_GameofLife
 
         private void randomizeFromTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Random r = new Random(DateTime.Now.Millisecond);
+            // generate a new random num useng the ms/min/hour from time as athe seed.
+            Random r = new Random(DateTime.Now.Millisecond+DateTime.Now.Minute+DateTime.Now.Hour);
             Utility.seed = r.Next();
             Utility.Randomize(universe);
             graphicsPanel1.Invalidate();

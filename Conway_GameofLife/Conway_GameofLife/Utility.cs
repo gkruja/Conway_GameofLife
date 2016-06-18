@@ -27,7 +27,7 @@ namespace Conway_GameofLife
         public static Color Gridlinesx10 { get; set; }
         public static Color BackGroundColor { get; set; }
 
-
+        // the function used to print the lines dividing every 10 cells
         public static void DrawGrid_10(Graphics e,GraphicsPanel graphicsPanel1)
         {
             float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
@@ -56,6 +56,7 @@ namespace Conway_GameofLife
 
 
         }
+        // function used to print the grid and all the cells and the corispondinding color they need to be from the settings/utility
         public static void DrawGrid(bool[,] universe,Graphics e, GraphicsPanel graphicsPanel1)
         {
             float width = (float)graphicsPanel1.ClientSize.Width / (float)Utility.Width;
@@ -106,7 +107,7 @@ namespace Conway_GameofLife
                 }
             }
         }
-
+        // prints the count of neighbors on each cell that is active
         public static int GetNaighbors(int x,int y, bool[,] universe)
         {
 
@@ -210,7 +211,7 @@ namespace Conway_GameofLife
             //}
             return count; //- (universe[x,y]?1:0);
         }
-
+        // displays the hud and all the information in the hud
         public static void HUD(Graphics e,GraphicsPanel graphicsPanel1, int generation,int living)
         {
                 string classify = (Utility.TypeOfUniverse == true) ? "Torodial" : "Finite";
@@ -220,7 +221,11 @@ namespace Conway_GameofLife
                 e.DrawString(hud, font, Brushes.Red, new PointF(0, graphicsPanel1.ClientSize.Height - 125));
 
         }
-
+        // used to calculate the next generation acording to conways ruls of life.
+        // Any live cell with fewer than two live neighbours dies (referred to as underpopulation or exposure[1]).
+        // Any live cell with more than three live neighbours dies (referred to as overpopulation or overcrowding).
+        // Any live cell with two or three live neighbours lives, unchanged, to the next generation.
+        // Any dead cell with exactly three live neighbours will come to life.
         public static void NextGeneration(bool[,] universe,bool[,] UniverseNext)
         {
             for (int y = 0; y < Utility.Height; y++)
@@ -248,7 +253,7 @@ namespace Conway_GameofLife
                 }
             }
         }
-
+        // used to set the values from settings to uility values.
         public static void SetUtility()
         {
             Utility.seed = Settings.Default.Seed;
@@ -267,6 +272,7 @@ namespace Conway_GameofLife
             Utility.Gridlinesx10 = Settings.Default.Gridlinesx10;
             Utility.BackGroundColor = Settings.Default.BackGroundColor;
         }
+        // used to set the values from utility to settings.
         public static void SetSettings()
         {
             Settings.Default.Seed = Utility.seed;
@@ -285,6 +291,7 @@ namespace Conway_GameofLife
             Settings.Default.Gridlinesx10 = Utility.Gridlinesx10;
             Settings.Default.BackGroundColor = Utility.BackGroundColor;
         }
+        // randomzies a number bassed off of seed 
         public static void Randomize(bool[,] universe)
         {
             Random r = new Random(seed);
