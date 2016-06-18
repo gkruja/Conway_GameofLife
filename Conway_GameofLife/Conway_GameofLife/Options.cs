@@ -114,6 +114,7 @@ namespace Conway_GameofLife
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
+            
             // default hard codded values that go in decided by me.
             Utility.Width = 50;
             Utility.Height = 50;

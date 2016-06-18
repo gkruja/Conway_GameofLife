@@ -23,8 +23,9 @@ namespace Conway_GameofLife
         public Form1()
         {
             InitializeComponent();
-            Utility.SetUtility();
 
+            Utility.SetUtility();
+            
 
             viewHUDToolStripMenuItem.Checked = Utility.ViewHud;
             viewNeighborsToolStripMenuItem.Checked = Utility.ViewNeightbors;
@@ -55,7 +56,7 @@ namespace Conway_GameofLife
             }
 
             // update toolstrip
-            toolStripStatusLabel1.Text = "Generation: " + generation.ToString()+"  Living cells: "+living.ToString();
+            //toolStripStatusLabel1.Text = "Seed:" + Utility.seed.ToString() + "Generation: " + generation.ToString() + "  Living cells: " + living.ToString();
 
             // Paint
             graphicsPanel1.Invalidate();
@@ -74,7 +75,7 @@ namespace Conway_GameofLife
             {
                 Utility.HUD(e.Graphics, graphicsPanel1, generation, living);
             }
-            toolStripStatusLabel1.Text = "Generation: " + generation.ToString() + "  Living cells: " + living.ToString();
+            toolStripStatusLabel1.Text = "Seed: " + Utility.seed.ToString() + " Generation: " + generation.ToString() + "  Living cells: " + living.ToString();
 
         }
 
@@ -350,6 +351,59 @@ namespace Conway_GameofLife
                 }
                 graphicsPanel1.Invalidate();
             }
+        }
+
+        //reset all of the setttings to ones that are hardcoded
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newToolStripButton_Click(sender, e);
+            // default hard codded values that go in decided by me.
+            Utility.Width = 50;
+            Utility.Height = 50;
+            Utility.TimeInterval = 20;
+            Utility.NeightborCountColor = Color.Red;
+            Utility.LivingNextColor = Color.LightYellow;
+            Utility.DyingNextColor = Color.LightGray;
+            Utility.StillAliveColor = Color.LightGreen;
+            Utility.TypeOfUniverse = true;
+            Utility.ViewGrid = true;
+            Utility.ViewHud = true;
+            Utility.ViewNeightbors = true;
+            Utility.Gridlines = Color.Black;
+            Utility.Gridlinesx10 = Color.Black;
+            Utility.BackGroundColor = Color.White;
+
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newToolStripButton_Click(sender, e);
+            Utility.SetUtility();
+        }
+
+        private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.Randomize(universe);
+            graphicsPanel1.Invalidate();
+        }
+
+        private void randomizeFromTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random r = new Random(DateTime.Now.Millisecond);
+            Utility.seed = r.Next();
+            Utility.Randomize(universe);
+            graphicsPanel1.Invalidate();
+        }
+
+        private void newSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RandOptions temp = new RandOptions();
+
+
+            graphicsPanel1.Invalidate();
+
+            
+            temp.ShowDialog();
         }
 
 

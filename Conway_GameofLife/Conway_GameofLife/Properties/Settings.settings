@@ -44,5 +44,8 @@
     <Setting Name="BackGroundColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
+    <Setting Name="Seed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">34857877</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

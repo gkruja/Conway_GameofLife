@@ -12,6 +12,7 @@ namespace Conway_GameofLife
     static class Utility
     {
         public static int Width { get; set; }
+        public static int seed { get; set; }
         public static int Height { get; set; }
         public static int TimeInterval { get; set; }
         public static Color NeightborCountColor { get; set; }
@@ -90,7 +91,7 @@ namespace Conway_GameofLife
                         e.FillRectangle(new Pen(Utility.LivingNextColor).Brush, temp);
                     }
                     if(ViewGrid == true)
-                    e.DrawRectangle(Pens.Black, temp.X, temp.Y, temp.Width, temp.Height);
+                    e.DrawRectangle(new Pen(Utility.Gridlines), temp.X, temp.Y, temp.Width, temp.Height);
                     if (GetNaighbors(x,y,universe) > 0 && Utility.ViewNeightbors ==true)
                     {
                         float size = Math.Min(width, height);
@@ -250,6 +251,7 @@ namespace Conway_GameofLife
 
         public static void SetUtility()
         {
+            Utility.seed = Settings.Default.Seed;
             Utility.Width = Settings.Default.Width;
             Utility.Height = Settings.Default.Height;
             Utility.TimeInterval = Settings.Default.TimeInterval;
@@ -267,6 +269,7 @@ namespace Conway_GameofLife
         }
         public static void SetSettings()
         {
+            Settings.Default.Seed = Utility.seed;
             Settings.Default.Width = Utility.Width;
             Settings.Default.Height = Utility.Height;
             Settings.Default.TimeInterval = Utility.TimeInterval;
@@ -281,6 +284,22 @@ namespace Conway_GameofLife
             Settings.Default.Gridlines = Utility.Gridlines;
             Settings.Default.Gridlinesx10 = Utility.Gridlinesx10;
             Settings.Default.BackGroundColor = Utility.BackGroundColor;
+        }
+        public static void Randomize(bool[,] universe)
+        {
+            Random r = new Random(seed);
+            for (int y = 0; y < Utility.Height; y++)
+            {
+                for (int x = 0; x < Utility.Width; x++)
+                {
+                    if (r.Next() % 2 == 0)
+                        universe[x, y] = true;
+                    else
+                        universe[x, y] = false;
+
+                }
+
+            }
         }
     }
 }

@@ -190,5 +190,17 @@ namespace Conway_GameofLife.Properties {
                 this["BackGroundColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34857877")]
+        public int Seed {
+            get {
+                return ((int)(this["Seed"]));
+            }
+            set {
+                this["Seed"] = value;
+            }
+        }
     }
 }
