@@ -406,6 +406,12 @@ namespace Conway_GameofLife
             temp.ShowDialog();
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 temp = new AboutBox1();
+            temp.ShowDialog();
+        }
+
 
 
 
