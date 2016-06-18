@@ -36,6 +36,10 @@ namespace Conway_GameofLife
             LiveLivingCellColorButton.BackColor = Utility.StillAliveColor;
             LivingCellColorButton.BackColor = Utility.DyingNextColor;
             DeadLivingCellColorButton.BackColor = Utility.LivingNextColor;
+            if (Utility.TypeOfUniverse)
+                Torodial_radio.Checked = true;
+            else
+                Finit_radio.Checked = true;
 
         }
         private void GridColorButton_Click(object sender, EventArgs e)
@@ -124,6 +128,18 @@ namespace Conway_GameofLife
             Utility.Gridlines = Color.Black;
             Utility.Gridlinesx10 = Color.Black;
             Utility.BackGroundColor = Color.White;
+        }
+
+        private void Finit_radio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Finit_radio.Checked)
+            {
+                Utility.TypeOfUniverse = false;
+            }
+            else
+            {
+                Utility.TypeOfUniverse = true;
+            }
         }
     }
 }

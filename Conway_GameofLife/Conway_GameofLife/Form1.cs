@@ -97,7 +97,8 @@ namespace Conway_GameofLife
             }
             else
             {
-                contextMenuStrip1.Show(e.Location);
+                Point p = new Point(e.X + Location.X, Location.Y + e.Y);
+                contextMenuStrip1.Show(p);
             }
         }
         private void newToolStripButton_Click(object sender, EventArgs e)
@@ -235,7 +236,7 @@ namespace Conway_GameofLife
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void vIewGridToolStripMenuItem_Click(object sender, EventArgs e)

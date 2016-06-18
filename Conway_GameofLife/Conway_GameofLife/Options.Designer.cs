@@ -51,8 +51,8 @@
             this.GridColorButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Torodial_radio = new System.Windows.Forms.RadioButton();
+            this.Finit_radio = new System.Windows.Forms.RadioButton();
             this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton_Options = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
@@ -284,8 +284,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.Torodial_radio);
+            this.groupBox1.Controls.Add(this.Finit_radio);
             this.groupBox1.Location = new System.Drawing.Point(8, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(103, 78);
@@ -293,27 +293,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Boundry Type";
             // 
-            // radioButton2
+            // Torodial_radio
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.Torodial_radio.AutoSize = true;
+            this.Torodial_radio.Location = new System.Drawing.Point(6, 42);
+            this.Torodial_radio.Name = "Torodial_radio";
+            this.Torodial_radio.Size = new System.Drawing.Size(63, 17);
+            this.Torodial_radio.TabIndex = 2;
+            this.Torodial_radio.TabStop = true;
+            this.Torodial_radio.Text = "Torodial";
+            this.Torodial_radio.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // Finit_radio
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.Finit_radio.AutoSize = true;
+            this.Finit_radio.Location = new System.Drawing.Point(6, 19);
+            this.Finit_radio.Name = "Finit_radio";
+            this.Finit_radio.Size = new System.Drawing.Size(50, 17);
+            this.Finit_radio.TabIndex = 1;
+            this.Finit_radio.TabStop = true;
+            this.Finit_radio.Text = "Finite";
+            this.Finit_radio.UseVisualStyleBackColor = true;
+            this.Finit_radio.CheckedChanged += new System.EventHandler(this.Finit_radio_CheckedChanged);
             // 
             // OkButton
             // 
@@ -400,8 +401,8 @@
         private System.Windows.Forms.Button Grid_10ColorButton;
         private System.Windows.Forms.Button GridColorButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton Torodial_radio;
+        private System.Windows.Forms.RadioButton Finit_radio;
         private System.Windows.Forms.Button ResetButton;
     }
 }

@@ -212,10 +212,10 @@ namespace Conway_GameofLife
 
         public static void HUD(Graphics e,GraphicsPanel graphicsPanel1, int generation,int living)
         {
-
+                string classify = (Utility.TypeOfUniverse == true) ? "Torodial" : "Finite";
                 Font font = new Font("Arial", 16f);
 
-                string hud = "Generation: " + generation + "\nCell Count: " + living + "\nTime Interval(ms): " + Utility.TimeInterval+ "\nBoundry Type: Finite" + "\nUniverse Size: " + "{Width="+ Utility.Width+" , "+"Height="+ Utility.Height+" }";
+                string hud = "Generation: " + generation + "\nCell Count: " + living + "\nTime Interval(ms): " + Utility.TimeInterval+ "\nBoundry Type:"+classify + "\nUniverse Size: " + "{Width="+ Utility.Width+" , "+"Height="+ Utility.Height+" }";
                 e.DrawString(hud, font, Brushes.Red, new PointF(0, graphicsPanel1.ClientSize.Height - 125));
 
         }
