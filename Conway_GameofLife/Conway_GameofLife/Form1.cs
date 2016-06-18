@@ -191,8 +191,12 @@ namespace Conway_GameofLife
                                 for (int j = 0; j < max; j++)
                                 {
                                     if (ReadSplit[i][j] == 'O')
-                                        universe[(j)+5, (i-2)+5] = true;
+                                {
+                                    universe[(j) + 5, (i - 2) + 5] = true;
+                                    living++;
+
                                 }
+                            }
                             
                         }
                         read.Close();
@@ -239,6 +243,7 @@ namespace Conway_GameofLife
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             Close();
         }
 
@@ -324,7 +329,13 @@ namespace Conway_GameofLife
                                 for (int j = 0; j < ReadSplit[i].Length; j++)
                                 {
                                     if (ReadSplit[i][j] == 'O' && j< Utility.Width)
-                                        universe[j,i-2] = true;
+                                    {
+                                        if (universe[j, i - 2] != true)
+                                            living++;
+
+                                        universe[j, i - 2] = true;
+                                    }
+
                                 }
                             }
                         }

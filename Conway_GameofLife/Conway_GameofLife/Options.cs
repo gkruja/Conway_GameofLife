@@ -129,6 +129,23 @@ namespace Conway_GameofLife
             Utility.Gridlines = Color.Black;
             Utility.Gridlinesx10 = Color.Black;
             Utility.BackGroundColor = Color.White;
+
+
+            // set options back so user can see there reset on both the setings and the grid
+
+            Timer_UD.Value = Utility.TimeInterval;
+            Width_UD.Value = Utility.Width;
+            Height_UD.Value = Utility.Height;
+            GridColorButton.BackColor = Utility.Gridlines;
+            Grid_10ColorButton.BackColor = Utility.Gridlinesx10;
+            BackgroundColorButton.BackColor = Utility.BackGroundColor;
+            LiveLivingCellColorButton.BackColor = Utility.StillAliveColor;
+            LivingCellColorButton.BackColor = Utility.DyingNextColor;
+            DeadLivingCellColorButton.BackColor = Utility.LivingNextColor;
+            if (Utility.TypeOfUniverse)
+                Torodial_radio.Checked = true;
+            else
+                Finit_radio.Checked = true;
         }
 
         private void Finit_radio_CheckedChanged(object sender, EventArgs e)
