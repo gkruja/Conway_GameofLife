@@ -26,7 +26,7 @@ namespace Conway_GameofLife
         public Options()
         {
             InitializeComponent();
-            
+            // set the options values from the utility;
             Timer_UD.Value = Utility.TimeInterval;
             Width_UD.Value = Utility.Width;
             Height_UD.Value = Utility.Height;
@@ -114,6 +114,7 @@ namespace Conway_GameofLife
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
+            // default hard codded values that go in decided by me.
             Utility.Width = 50;
             Utility.Height = 50;
             Utility.TimeInterval = 20;
@@ -132,6 +133,7 @@ namespace Conway_GameofLife
 
         private void Finit_radio_CheckedChanged(object sender, EventArgs e)
         {
+            // set type of universe depended on a radio and a bool;
             if (Finit_radio.Checked)
             {
                 Utility.TypeOfUniverse = false;
